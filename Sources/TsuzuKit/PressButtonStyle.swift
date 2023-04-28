@@ -9,7 +9,7 @@ public struct PressButtonStyle: ButtonStyle {
 }
 
 public extension ButtonStyle where Self == PressButtonStyle {
-    static var squemo: Self {
+    static var press: Self {
         return .init()
     }
 }
