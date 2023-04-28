@@ -19,7 +19,9 @@ public struct CapsuleButtonStyle: ButtonStyle {
             .background(
                 Capsule()
                     .fill(backgroundColor)
+                    .scaleEffect(configuration.isPressed ? 1.05 : 1)
             )
+            .animation(.spring(response: 0.2, dampingFraction: 0.9), value: configuration.isPressed)
     }
 }
 
