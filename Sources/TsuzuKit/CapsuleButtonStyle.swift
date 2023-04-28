@@ -10,7 +10,7 @@ public struct CapsuleButtonStyle: ButtonStyle {
             .foregroundColor(colorScheme == .dark ? .white : .black)
             .background(
                 Capsule()
-                    .fill(colorScheme == .dark ? .black : .white)
+                    .fill(colorScheme == .dark ? .white : .black)
             )
     }
 }
