@@ -4,8 +4,13 @@ import LinkPresentation
 public struct LinkPresentationView: UIViewRepresentable {
   public typealias UIViewType = LPLinkView
 
-  let url: URL
-  @Binding var redraw: Bool
+  public let url: URL
+  @Binding public var redraw: Bool
+
+  public init(url: URL, redraw: Binding<Bool>) {
+    self.url = url
+    self._redraw = redraw
+  }
 
   public func makeUIView(context: UIViewRepresentableContext<LinkPresentationView>) -> UIViewType {
     let view = LPLinkView(url: url)
