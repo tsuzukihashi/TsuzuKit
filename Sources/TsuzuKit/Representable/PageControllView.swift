@@ -2,11 +2,20 @@ import SwiftUI
 
 public struct PageControllView: UIViewRepresentable {
   @Binding var currentPage: Int
-  var numberOfPages: Int = 0
+  let numberOfPages: Int
+  let pageIndicatorTintColor :UIColor
+  let currentPageIndicatorTintColor :UIColor
 
-  public init(currentPage: Binding<Int>, numberOfPages: Int) {
+  public init(
+    currentPage: Binding<Int>,
+    numberOfPages: Int,
+    pageIndicatorTintColor: UIColor = .secondaryLabel,
+    currentPageIndicatorTintColor: UIColor = .label
+  ) {
     self._currentPage = currentPage
     self.numberOfPages = numberOfPages
+    self.pageIndicatorTintColor = pageIndicatorTintColor
+    self.currentPageIndicatorTintColor = currentPageIndicatorTintColor
   }
 
   public func makeCoordinator() -> Coordinator {
@@ -15,9 +24,9 @@ public struct PageControllView: UIViewRepresentable {
 
   public func makeUIView(context: Context) -> UIPageControl {
     let pageControl = UIPageControl()
-    pageControl.currentPageIndicatorTintColor = .label
+    pageControl.pageIndicatorTintColor = pageIndicatorTintColor
+    pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor
     pageControl.numberOfPages = numberOfPages
-    pageControl.pageIndicatorTintColor = .secondaryLabel
     pageControl.addTarget(
       context.coordinator,
       action: #selector(Coordinator.updateCurrentPage(sender:)),
