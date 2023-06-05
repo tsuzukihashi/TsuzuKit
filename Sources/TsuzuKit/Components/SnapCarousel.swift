@@ -61,7 +61,7 @@ public struct SnapCarousel<Content: View, T: Identifiable>: View {
                     .onChanged({ value in
                         isScroll = true
                         let offsetX = value.translation.width
-                        let progress = -offsetX / width
+                        let progress = -offsetX / 30
                         let roundIndex = progress.rounded()
 
                         index = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
