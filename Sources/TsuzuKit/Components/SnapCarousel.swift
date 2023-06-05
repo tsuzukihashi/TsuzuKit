@@ -68,9 +68,9 @@ public struct SnapCarousel<Content: View, T: Identifiable>: View {
             let roundIndex: CGFloat
 
             if progress > 0 {
-              roundIndex = min(progress.rounded(), 0)
-            } else {
               roundIndex = max(progress.rounded(), 0)
+            } else {
+              roundIndex = min(progress.rounded(), 0)
             }
 
             index = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
