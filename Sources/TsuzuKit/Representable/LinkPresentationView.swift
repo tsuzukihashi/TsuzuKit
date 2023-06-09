@@ -1,6 +1,7 @@
 import SwiftUI
 import LinkPresentation
 
+#if canImport(UIKit)
 public struct LinkPresentationView: UIViewRepresentable {
   public typealias UIViewType = LPLinkView
 
@@ -95,3 +96,4 @@ public final class MetaCache {
     }
   }
 }
+#endif

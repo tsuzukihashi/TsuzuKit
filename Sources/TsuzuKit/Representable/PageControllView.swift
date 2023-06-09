@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if canImport(UIKit)
 public struct PageControllView: UIViewRepresentable {
   @Binding var currentPage: Int
   let numberOfPages: Int
@@ -51,3 +52,4 @@ public struct PageControllView: UIViewRepresentable {
     }
   }
 }
+#endif
