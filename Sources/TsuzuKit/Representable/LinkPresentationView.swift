@@ -58,6 +58,63 @@ public struct LinkPresentationView: UIViewRepresentable {
     }
   }
 }
+#elseif canImport(AppKit)
+public struct LinkPresentationView: NSViewRepresentable {
+  public typealias NSViewType = LPLinkView
+
+  public let url: URL
+  @Binding public var redraw: Bool
+
+  public init(url: URL, redraw: Binding<Bool>) {
+    self.url = url
+    self._redraw = redraw
+  }
+
+  public func makeNSView(context: NSViewRepresentableContext<LinkPresentationView>) ->  NSViewType {
+    let view = LPLinkView(url: url)
+    view.isHidden = true
+    if let cachedData = MetaCache.shared.metadata(for: url) {
+      update(view: view, with: cachedData)
+    } else {
+      self.fetchMetadata(for: url) { result in
+        switch result {
+        case .success(let metadata):
+          MetaCache.shared.store(metadata)
+          self.update(view: view, with: metadata)
+        case .failure:
+          self.redraw = true
+        }
+      }
+    }
+    return view
+  }
+
+  public func updateNSView(_ nsView: LPLinkView, context: Context) {
+  }
+
+  private func fetchMetadata(for url: URL, completion: @escaping (Result<LPLinkMetadata, Error>) -> Void) {
+    let provider = LPMetadataProvider()
+
+    provider.startFetchingMetadata(for: url) { metadata, error in
+      if let error = error {
+        completion(.failure(error))
+      } else if let metadata = metadata {
+        completion(.success(metadata))
+      } else {
+        completion(.failure(LPError(.unknown)))
+      }
+    }
+  }
+
+  private func update(view: NSViewType, with metadata: LPLinkMetadata) {
+    DispatchQueue.main.async {
+      view.metadata = metadata
+      self.redraw = true
+      view.isHidden = false
+    }
+  }
+}
+#endif
 
 public final class MetaCache {
   public static let shared = MetaCache()
@@ -96,4 +153,3 @@ public final class MetaCache {
     }
   }
 }
-#endif
