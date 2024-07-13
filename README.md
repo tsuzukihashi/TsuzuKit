@@ -1,19 +1,33 @@
 # TsuzuKit
-オレオレSwiftライブラリ
 
-<img src="https://1.bp.blogspot.com/-PYOsJAMddQI/WdyDTQ-OjQI/AAAAAAABHbU/wg8mS8AFANYaZOKreTrdJhPPUochYCkDQCLcBGAs/s800/character_program_shutdown.png" width=320>
+オレオレ Swift ライブラリ
 
-### 部分角丸 
+<img src="./Sources/TsuzuKit/Resources/Image/icon.jpeg" width=320>
+
+### 部分角丸
+
 - PartlyRoundedCornerView
 
-Useage 
-```.swift
+Useage
+
+```swift
   .cornerRadius(20, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
 ```
+
 ### HapticFeedback
 
-```.swift
+```swift
   HapticFeedback.notice(type: .success)
   HapticFeedback.impact(style: .medium)
   HapticFeedback.selection()
+```
+
+### Safe Access Collection
+
+```swift
+  import TsuzuKit
+
+  ...
+  let collection: [String] = ["1", "2"]
+  print(collection[safe: 0]) // Optional("1")
 ```
