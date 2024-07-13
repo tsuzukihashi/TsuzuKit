@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension View {
+public extension View {
   @ViewBuilder
   func `if`<Content: View>(
     _ condition: Bool,
