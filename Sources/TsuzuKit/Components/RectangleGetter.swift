@@ -13,10 +13,10 @@ public struct RectangleGetter: View {
     }
   }
 
-  @MainActor
   public func createView(proxy: GeometryProxy) -> some View {
-    rect = proxy.frame(in: .global)
-    return Rectangle()
-      .fill(Color.clear)
+    DispatchQueue.main.async {
+      rect = proxy.frame(in: .global)
+    }
+    return Rectangle().fill(Color.clear)
   }
 }
