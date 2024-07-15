@@ -1,5 +1,14 @@
 import SwiftUI
 
+public extension UIView {
+  func getImage(rect: CGRect) -> UIImage {
+    let renderer = UIGraphicsImageRenderer(bounds: rect)
+    return renderer.image { rendererContext in
+      layer.render(in: rendererContext.cgContext)
+    }
+  }
+}
+
 public extension View {
   @ViewBuilder
   func `if`<Content: View>(
