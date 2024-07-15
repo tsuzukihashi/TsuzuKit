@@ -3,10 +3,10 @@ import LinkPresentation
 
 public class ShareActivityItemSource: NSObject, UIActivityItemSource {
   var shareText: String
-  var shareImage: UIImage
+  var shareImage: UIImage?
   var linkMetaData = LPLinkMetadata()
 
-  public init(shareText: String, shareImage: UIImage) {
+  public init(shareText: String, shareImage: UIImage?) {
     self.shareText = shareText
     self.shareImage = shareImage
     linkMetaData.title = shareText
