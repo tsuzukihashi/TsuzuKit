@@ -2,19 +2,30 @@ import Foundation
 import SwiftUI
 
 public struct ShareSheet: UIViewControllerRepresentable {
-  let image: UIImage?
-  let text: String
+  private let image: UIImage?
+  private let title: String
+  private let description: String?
 
-  public init(image: UIImage?, text: String) {
+  public init(
+    title: String,
+    image: UIImage?,
+    description: String?
+  ) {
+    self.title = title
     self.image = image
-    self.text = text
+    self.description = description
   }
 
   public func makeUIViewController(context: Context) -> UIActivityViewController {
-    let itemSource = ShareActivityItemSource(shareText: text, shareImage: image)
-    var activityItems: [Any] = [text, itemSource]
+    let itemSource = ShareActivityItemSource(
+      title: title
+    )
+    var activityItems: [Any] = [itemSource]
     if let image {
       activityItems.append(image)
+    }
+    if let description {
+      activityItems.append(description)
     }
     let controller = UIActivityViewController(
       activityItems: activityItems,
