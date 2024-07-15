@@ -2,14 +2,14 @@ import Foundation
 import LinkPresentation
 
 public class ShareActivityItemSource: NSObject, UIActivityItemSource {
-  var shareText: String
-  var shareImage: UIImage?
-  var linkMetaData = LPLinkMetadata()
+  private let title: String
+  private let linkMetaData = LPLinkMetadata()
 
-  public init(shareText: String, shareImage: UIImage?) {
-    self.shareText = shareText
-    self.shareImage = shareImage
-    linkMetaData.title = shareText
+  public init(
+    title: String
+  ) {
+    self.title = title
+    linkMetaData.title = title
     super.init()
   }
 
