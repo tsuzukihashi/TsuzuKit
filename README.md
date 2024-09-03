@@ -31,3 +31,11 @@ Useage
   let collection: [String] = ["1", "2"]
   print(collection[safe: 0]) // Optional("1")
 ```
+
+### QRCodeGenerator
+
+```swift
+  import TsuzuKit
+  
+  Image(uiImage: QRCodeGenerator.generate(with: "https://tsuzukihashi.github.io/"))
+```
