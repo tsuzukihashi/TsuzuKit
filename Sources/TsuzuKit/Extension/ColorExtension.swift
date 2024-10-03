@@ -13,8 +13,8 @@ public extension Color {
     self = Color(hue: h, saturation: s, brightness: b, opacity: opacity)
   }
 
-  init(hex: String, opacity: Double = 1.0) {
-    let v = Int(hex, radix: 16) ?? 0
+  init(code: String, opacity: Double = 1.0) {
+    let v = Int(code, radix: 16) ?? 0
     let r = Double(v / Int(powf(256, 2)) % 256) / 255
     let g = Double(v / Int(powf(256, 1)) % 256) / 255
     let b = Double(v / Int(powf(256, 0)) % 256) / 255
